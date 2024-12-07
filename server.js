@@ -26,7 +26,7 @@ const botName = "ChatCord Bot";
 // Redis configuration
 (async () => {
   pubClient = createClient({
-    url: "redis://default:HxvWThIwbEymiLvUHPzsuXQFVnJfiDet@junction.proxy.rlwy.net:46133",
+    url: "redis://default:iTUoSsNvXhiMCKdSuRXXXiQRzbtrRUmi@junction.proxy.rlwy.net:58171",
   });
   await pubClient.connect();
   subClient = pubClient.duplicate();
