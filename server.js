@@ -25,7 +25,9 @@ const botName = "ChatCord Bot";
 
 // Redis configuration
 (async () => {
-  pubClient = createClient({ url: "redis://default:HxvWThIwbEymiLvUHPzsuXQFVnJfiDet@junction.proxy.rlwy.net:46133" });
+  pubClient = createClient({
+    url: "redis://default:HxvWThIwbEymiLvUHPzsuXQFVnJfiDet@junction.proxy.rlwy.net:46133",
+  });
   await pubClient.connect();
   subClient = pubClient.duplicate();
   io.adapter(createAdapter(pubClient, subClient));
@@ -35,11 +37,12 @@ const botName = "ChatCord Bot";
 io.on("connection", (socket) => {
   console.log("New WebSocket connection established");
 
+  // Join room event
   socket.on("joinRoom", ({ username, room }) => {
     const roomUsers = getRoomUsers(room); // Get the current list of users in the room
 
     // Check if the room is full
-    if (roomUsers.length >=50) {
+    if (roomUsers.length >= 50) {
       socket.emit("roomFull", "The chat room is full. You cannot join.");
       return; // Stop further processing
     }
